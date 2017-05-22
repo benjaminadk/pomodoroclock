@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>FCC Pomodoro Clock Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <div class='container'>
+  <div class='row'>
+    <div class='col s6'>
+      <div class='card card1'>
+
+        <h4 id='clockDisplay'>Work Session</h4>
+
+        <p class='bigwork'></p>
+        <form action='#'>
+          <p class='range-field'>
+            <input type='range' min='1' max='60' value='25' step='1' id='setWorkTime' class='width-50 tooltipped' data-position='bottom' data-delay='50' data-tooltip='Work Session Length Slider' />
+          </p>
+        </form>
+      </div>
+    </div>
+
+
+    <div class='col s6'>
+      <div class='card card2'>
+        <h4 id='breakDisplay'>Break Session</h4>
+<p class='bigbreak'></p>
+
+        <form action='#'>
+          <p class='range-field'>
+            <input type='range' min='1' max='30' value='5' step='1' id='setBreakTime' class='tooltipped' data-position='bottom' data-delay='50' data-tooltip='Break Session Length Slider' />
+          </p>
+        </form>
+
+
+        </card>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col s6'>
+      <div class='svgcont'>
+        <?xml version="1.0" encoding="utf-8"?>
+        <svg data-position='bottom' data-delay='50' data-tooltip='SVG Clock - Made with Boxy - Clock is set to ten times normal speed!!!' class='tooltipped' viewBox="133 127 236 232" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <path id="text-path-0" d="M 100.404 169.722 C 125.66 77.045 316.442 71.175 321.538 154.024" style="fill: none; stroke: red; stroke-width: 2;"/>
+  </defs>
+  <path id='bigH' d="M 254.572 251.255 C 254.572 252.111 254.331 252.911 253.914 253.591 L 253.914 323.199 L 257.178 323.199 L 250.106 337.343 L 243.034 323.199 L 246.298 323.199 L 246.298 253.591 C 245.881 252.911 245.64 252.111 245.64 251.255 C 245.64 248.788 247.639 246.789 250.106 246.789 C 252.573 246.789 254.572 248.788 254.572 251.255 Z" style="stroke: rgb(0, 0, 0); fill: rgba(199, 189, 189, 0.84);"/>
+  <path id='outerClock' d="M 250 241.599 m -108.313 0 a 108.313 108.313 0 1 0 216.626 0 a 108.313 108.313 0 1 0 -216.626 0 Z M 250 241.599 m -96.708 0 a 96.708 96.708 0 0 1 193.416 0 a 96.708 96.708 0 0 1 -193.416 0 Z" style="fill: rgb(45, 66, 121); stroke: rgb(0, 0, 0);" bx:shape="ring 250 241.599 96.708 96.708 108.313 108.313 1@84184d08" bx:origin="0.493 0.497"/>
+  <path id='midH' d="M 256.078 246.156 L 336.212 246.156 L 336.212 243.948 L 341.939 247.63 L 336.212 251.311 L 336.212 249.102 L 256.264 249.102 C 255.783 250.051 254.798 250.701 253.663 250.701 C 252.053 250.701 250.749 249.396 250.749 247.787 C 250.749 246.178 252.053 244.872 253.663 244.872 C 254.669 244.872 255.555 245.382 256.078 246.156 Z" style="stroke: rgb(15, 16, 15); fill: rgb(127, 104, 104);"/>
+  <path id='smallH' d="M 251.966 246.021 C 251.966 246.875 251.273 247.568 250.419 247.568 C 249.565 247.568 248.872 246.875 248.872 246.021 C 248.872 245.538 249.093 245.107 249.44 244.823 L 249.44 155.994 L 251.397 155.994 L 251.397 244.822 C 251.744 245.106 251.966 245.537 251.966 246.021 Z" style="stroke: rgb(0, 0, 0); fill: rgb(255, 0, 0);"/>
+  <path d="M 360.132 158.566 L 360.132 158.566 Z" style="fill: none; stroke: black;"/>
+  <path d="M 360.132 157.179 C 360.132 157.179 360.132 157.179 360.132 157.179 Z" style="fill: none; stroke: black;"/>
+</svg></div>
+    </div>
+
+<div class='col s5'>
+<div class='input-field'>
+  <textarea id='notes' class='materialize-textarea'></textarea>
+  <label for='notes'>Session Notes</label>
+  </div>
+</div>
+  </div>
+  <div class='fixed-action-btn click-to-toggle'>
+    <a class='btn-floating btn-large green darken-2 tooltipped' onclick='Materialize.showStaggeredList("#controls")' data-position='left' data-delay='50' data-tooltip='Controls'><i class="material-icons" style="font-size:36px;">settings</i></a>
+    <ul id='controls'>
+      <li><a class="tooltipped waves-effect waves-light btn-floating btn-large modal-trigger green darken-2"data-position='left' data-delay='50' data-tooltip='Information' data-href="#modal1"><i class="material-icons" style="font-size:36px;">info_outline</i></a></li>
+
+      <li><a id='startButton' class='btn-floating waves-effect red darken-2 disabled tooltipped' data-position='left' data-delay='50' data-tooltip='Start'><i class="material-icons"style="font-size:24px;">play_circle_outline</i></a></li>
+      <li><a id='pauseButton' class='tooltipped btn-floating waves-effect red darken-2 disabled' data-position='left' data-delay='50' data-tooltip='Pause'><i class="material-icons" style="font-size:24px;">pause_circle_outline</i></a></li>
+      <li><a id='resetButton' class='tooltipped btn-floating waves-effect red darken-2 disabled' data-position='left' data-delay='50' data-tooltip='Reset'><i class="material-icons"style="font-size:24px;">undo</i></a> </li>
+    </ul>
+  </div>
+
+
+</div>
+<footer class='center'><h5>Design by Ben.Jam(In);</h6></footer>
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h1>Pomodoro Clock</h1>
+    <p>A Pomodoro Clock is a productivity and time management tool used to structure work flow. Also, the user gains a sense of achievement by simply finishing a
+      session. Pomodoro translates to TOMATO from its Italian origin</p>
+    <h4>Instructions</h4>
+    
+    <ol>
+      <li>Adjust 'Work Time' slider to desired length of work period (in minutes)</li>
+      <li>Set 'Break Time' slider to desired break period</li>
+      <li>Click 'Controls'</li>
+      <li>'Play' begins your session</li>
+      <li>At anytime you may 'Pause' or 'Reset' your session by pressing the coresponding button</li>
+      <li>Remember: You must set your times before hitting play</li>
+      <li>Enjoy the show</li>
+    </ol>
+ <h4 style='background-color:#c62828;'>Set 1min & 1min for site functionality</h4>
+  </div>
+    
+
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn red darken-2"><i class="material-icons">close</i></a>
+    
+  </div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>

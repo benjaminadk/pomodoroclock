@@ -1,0 +1,194 @@
+.backdrop{
+  background-color:#455a64;
+}
+
+body{
+  background-color:rgb(45, 66, 121);
+}
+.container{
+  margin:50px auto 0;
+  background-color:#b0bec5;
+  border-radius: 5px;
+
+}
+.card1{
+  margin-left: 30px;
+  box-shadow: 5px 5px 10px;
+  border-radius: 5px;
+  margin-top:30px;
+
+}
+.card2{
+  margin-right: 30px;
+  box-shadow: 5px 5px 10px;
+  border-radius: 5px;
+  margin-top:30px;
+
+
+}
+
+input[type=range] + .thumb{
+  background-color: #455a64;
+}
+input[type=range] + .thumb.active .value{
+  color: white;
+}
+input[type=range]::-webkit-slider-thumb{
+  background-color:#455a64;
+  width: 20px;
+  height: 20px;
+  border:5px solid #388e3c;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  height: 6px;
+  background: #455a64;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background-color:#5d4037;
+
+}
+.modal{
+  height:100%;
+}
+
+.modal h1{
+  background-color: #388e3c;
+  color:white;
+  text-align:center;
+  }
+.modal h4{
+  background-color: rgb(45, 66, 121);
+  color:white;
+  text-align:center;
+  margin-top: 10px;
+}
+.bigbreak{
+  display:inline;
+  font-size: 60px;
+  margin-left:60px;
+  color:#c62828;
+  
+}
+.bigwork{
+  display:inline;
+  font-size: 60px;
+  margin-left:60px;
+  color:rgb(45, 66, 121);
+}
+#breakDisplay, #clockDisplay{
+  background-color:#388e3c;
+  color: white;
+  padding: 10px 5px;
+  text-align: center;
+  font-size: 22px;
+  border-radius: 5px 5px 0 0;
+
+}
+
+.svgcont{
+  height: 200px;
+  width: 200px;
+  margin:50px auto;
+  border-radius:50%;  
+
+}
+.fixed-action-btn{
+  margin-bottom:80px;
+  margin-right: 80px;
+}
+
+.btn-floating:hover{
+  background-color:red;
+}
+h5{
+  color:white;
+  animation: ben 5s linear 0s 1 backwards;
+  opacity:1;
+  
+}
+@keyframes ben{
+  0%{
+    opacity:0;
+    transform:scale(.1); }
+  
+  100%{
+    opacity:1;}
+}
+.bighand{
+  transform-origin:top center;
+  animation: clock 430s linear 0s infinite;
+  
+}
+
+@keyframes clock{
+  100%{
+    transform:rotate(360deg);
+  }
+}
+
+.midhand{
+  animation: clock2 36s linear 0s infinite;
+  transform-origin:left center;
+ 
+}
+
+@keyframes clock2{
+  100%{
+    transform:rotate(360deg);
+  }
+}
+.smallhand{
+  animation: clock3 6s linear infinite;
+  transform-origin:bottom center;
+}
+@keyframes clock3{
+  100%{
+    transform:rotate(360deg);
+  }
+}
+.ring{
+  transform-origin:center center;
+  animation: implode 3s ease-in-out 1s forwards 1;
+}
+
+@keyframes implode{
+  0%{
+    transform:scale(1.1);
+    fill:red;
+  } 
+50%{transform:scale(.001);
+    rotatey(360deg);
+    fill:orange;
+  }
+  100%{fill:#c62828;
+  }
+}
+.rung{
+  transform-origin:center center;
+  animation: done 5s linear 0s forwards 1;
+}
+@keyframes done{
+  0%{
+    fill:yellow;
+  }
+  50%{
+   transform: rotatey(360deg)
+              scale(.01);
+   fill:transparent;
+  }
+  100%{
+    fill:rgb(45, 66, 121);
+  }
+}
+.input-field{
+  margin:120px 100px 0 0;
+}
+.input-field textarea:focus + label {
+  color: #c62828 !important;
+  font-size: 22px !important;
+}
+
+.row .input-field textarea:focus {
+  border-bottom: 1px solid #c62828 !important;
+}
