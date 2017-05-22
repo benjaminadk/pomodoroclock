@@ -2,7 +2,7 @@ $(document).ready(function(){
   //open modal on load  
   $('#modal1').modal();
   $('#modal1').modal('open');
-  $('.modal-trigger').leanModal();
+  //$('.modal-trigger').leanModal();
 
   //declare variables
     //work variables
