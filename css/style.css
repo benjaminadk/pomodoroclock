@@ -66,14 +66,15 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 .bigbreak{
   display:inline;
   font-size: 60px;
-  margin-left:60px;
+  margin-left:120px;
   color:#c62828;
+  text-align:center;
   
 }
 .bigwork{
   display:inline;
   font-size: 60px;
-  margin-left:60px;
+  margin-left:120px;
   color:rgb(45, 66, 121);
 }
 #breakDisplay, #clockDisplay{
@@ -90,8 +91,13 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   height: 200px;
   width: 200px;
   margin:50px auto;
-  border-radius:50%;  
+  border-radius:50%; 
+  position:relative;
 
+}
+svg{
+  position:relative;
+  z-index:2;
 }
 .fixed-action-btn{
   margin-bottom:80px;
@@ -166,7 +172,7 @@ h5{
 }
 .rung{
   transform-origin:center center;
-  animation: done 5s linear 0s forwards 1;
+  animation: done 3s linear 0s forwards 1;
 }
 @keyframes done{
   0%{
@@ -192,3 +198,46 @@ h5{
 .row .input-field textarea:focus {
   border-bottom: 1px solid #c62828 !important;
 }
+
+progress{
+  appearance:none;
+  -webkit-appearance:none;
+  position:relative;
+  bottom:150px;
+  left:55px;
+  height:90px;
+  width: 90px;
+  overflow:hidden;
+  transform:rotate(270deg)scale(2);
+  z-index:0;
+  border-radius:50%;
+}
+::-webkit-progress-bar{
+  border-radius:70px;
+  background-color:white;
+}
+.workStyle::-webkit-progress-value{
+  border-radius:70px 0 0 70px;
+  background-color:#2D4279;
+}
+.breakStyle::-webkit-progress-value{
+  border-radius:70px 0 0 70px;
+  background-color:#D32F2F;
+}
+.shrink{
+    animation: shrink 3s ease-in-out 1s forwards 1;
+}
+@keyframes shrink{
+  0%{}
+  50%{transform:scale(.01);}
+  100%{transform:scale(2)rotate(270deg);}
+}
+.shrink2{
+  animation: shrink2 3s linear 0s forwards 1;
+}
+@keyframes shrink2{
+  0%{}
+  50%{transform:scale(.01);}
+  100%{transform:scale(2)rotate(270deg);}
+  
+} 

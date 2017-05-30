@@ -1,15 +1,25 @@
 $(document).ready(function(){
   //open modal on load  
-  $('#modal1').modal();
-  $('#modal1').modal('open');
-  //$('.modal-trigger').leanModal();
-
+  //$('#modal1').modal();
+  //$('#modal1').modal('open');
+ // $('.modal-trigger').leanModal();
+  
+  //made these because i couldn't figure out jquery syntax
+  //for making sure these values were greater than 0
+  //this turns play button on later...a or b.value is simpler 
+  //i use these in change listener for worktime but leave the
+  //jquery syntax for the break listener a good way to compare
+  //while it is longer here...the actual code that does something
+  //looks a lot cleaner in regular javascript syntax
+  var a = document.getElementById("setWorkTime");
+  var b = document.getElementById("setBreakTime");
   //declare variables
     //work variables
   var displaySecW;
   var displayMinW;
-  var clickWorkTime;
+  var setWorkTime; 
   var workTime;
+  var clickWorkTime;
   var initDisplayW;
     //break variables
   var displaySecB;
@@ -31,6 +41,10 @@ $(document).ready(function(){
   var $bigH = $('#bigH');
   var $midH = $('#midH');
   var $smallH = $('#smallH');
+  //define progress ball
+  var progBall = document.getElementById('progress');
+  console.log(progBall);
+  var $progBall = $("progress");
   //audio for fun
   var audio = new Audio('https://www.myinstants.com/media/sounds/dramatic-end.mp3');
   var intro = new Audio('https://www.myinstants.com/media/sounds/zelda_theme_snes-cut-mp3.mp3');
@@ -41,13 +55,23 @@ $(document).ready(function(){
     clickBreakTime = setInterval(timerB,1000);
     
     function timerB(){
+    //decreases breakTime by 1 every 1000 milliseconds aka 1 second
     breakTime -= 1;
+    //uses built in math functions to convert raw seconds into minutes and seconds
     displayMinB = Math.floor(breakTime/60);
     displaySecB = (breakTime%60);
-    
+    //set the progress ball equal to the break time and start to decrease by 1/sec
+    $progBall.removeClass("workStyle");
+    $progBall.addClass("breakStyle");
+    progBall.max = b.value * 60;
+    progBall.value -= 1;
+  
+    //conditional for when break time runs out 
     if (displaySecB === 0 && displayMinB === 0){
-            //when break is over
+       //when break is over we stop the timer function
         clearInterval(clickBreakTime);
+      //clear the big display of break time and stop the clock hand animations
+      //the goal is to bring everything back to original state
         $startButton.removeClass('disabled');
         $bigBreak.html('');
         $bigH.removeClass('bighand');
@@ -59,7 +83,8 @@ $(document).ready(function(){
         $breakDisplay.html('Break Session');
         $startButton.addClass('disabled');
         $pauseButton.addClass('disabled');
-        outro.play();
+        $progBall.addClass("shrink2");
+        //outro.play();
     } 
     else if (displaySecB >= 10){
       $bigBreak.html(displayMinB + ' : ' + displaySecB);
@@ -76,25 +101,36 @@ $(document).ready(function(){
   } //end of switch funtion
   
   //when user moves slider
-  $(document).on('change', '#setWorkTime', function(){
-    $startButton.removeClass('disabled');
-
-    workTime = ($(this).val()*60);
-    initDisplayW = ($(this).val());
+  $(document).on('change', a, function(){
+    if(a.value > 0 && b.value > 0){
+    $startButton.removeClass('disabled');}
+    workTime = a.value*60;
+    initDisplayW = a.value;
+   // workTime = ($(this).val()*60);
+   // initDisplayW = ($(this).val());
    
+    //set progressball max to equal worktime seconds so 
+   //we can increase value of ball by 1 per second
+    $progBall.removeClass("breakStyle");
+    $progBall.addClass("workStyle");
+    progBall.max = workTime;
+    
    $clockDisplay.html(initDisplayW + " Minute Work Session");
   
   
   //listen for start button
 
   $startButton.on('click',function(){
-   intro.play();
-   clearInterval(clickWorkTime);
+   //legend of zelda plays
+   // intro.play();
+   //stops any previous timers
+    clearInterval(clickWorkTime);
+  //sets clock hand animations to go
    $bigH.addClass('bighand');
    $midH.addClass('midhand');
    $smallH.addClass('smallhand');
     //toggle buttons and inputs
-  
+  $('#setBreakTime').prop('disabled',true);
   $('#setWorkTime').prop('disabled',true);
   $startButton.addClass('disabled');
   $resetButton.removeClass('disabled');
@@ -106,20 +142,24 @@ $(document).ready(function(){
   //timing function
   
   function timer(){
+    //countdown 1 every 1000 milliseconds aka 1 second
     workTime -= 1;
+    //gets our minutes and seconds with built in math
     displayMinW = Math.floor(workTime/60);
     displaySecW = (workTime%60);
-    console.log(workTime);
+    //set our ball fill in motion
+    progBall.value += 1;
     //logic for the clock
     //when time runs out
     if (displaySecW === 0 && displayMinW === 0){
       //should do something cool here like play a sound or graphics...
-         audio.play();
+        // audio.play();
          $clockDisplay.html("Break Time");
          $bigWork.html('');
          clearInterval(clickWorkTime);
+        //animates the clock's outer ring
          $outerClock.addClass('ring');
-
+         $progBall.addClass('shrink');
       //call breakTime
          switchTime();
     }
@@ -163,13 +203,21 @@ $(document).ready(function(){
       //user has to interact there is no default yet
       $pauseButton.addClass('disabled');
       $resetButton.addClass('disabled');
+      $('#setBreakTime').prop('disabled',false);
       $('#setWorkTime').prop('disabled',false);
       workTime = ($('#setWorkTime').val()*60);
       $bigH.removeClass('bighand');
       $midH.removeClass('midhand');
       $smallH.removeClass('smallhand');
+      $outerClock.removeClass('ring');
+      $outerClock.removeClass('rung');
+      progBall.value = 0;
+      $progBall.removeClass('shrink');
+      $progBall.removeClass('shrink2');
       $bigBreak.html('');
       $bigWork.html('');
+      a.value = 0;
+      b.value = 0;
     });
     
     //end of start button click
@@ -187,5 +235,5 @@ $(document).ready(function(){
 
    
      
- 
+
 });//doc ready
