@@ -1,7 +1,7 @@
 $(document).ready(function(){
   //open modal on load  
-  //$('#modal1').modal();
-  //$('#modal1').modal('open');
+  $('#modal1').modal();
+  $('#modal1').modal('open');
  // $('.modal-trigger').leanModal();
   
   //made these because i couldn't figure out jquery syntax
