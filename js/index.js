@@ -43,7 +43,6 @@ $(document).ready(function(){
   var $smallH = $('#smallH');
   //define progress ball
   var progBall = document.getElementById('progress');
-  console.log(progBall);
   var $progBall = $("progress");
   //audio for fun
   var audio = new Audio('https://www.myinstants.com/media/sounds/dramatic-end.mp3');
@@ -84,7 +83,7 @@ $(document).ready(function(){
         $startButton.addClass('disabled');
         $pauseButton.addClass('disabled');
         $progBall.addClass("shrink2");
-        //outro.play();
+        outro.play();
     } 
     else if (displaySecB >= 10){
       $bigBreak.html(displayMinB + ' : ' + displaySecB);
@@ -122,7 +121,7 @@ $(document).ready(function(){
 
   $startButton.on('click',function(){
    //legend of zelda plays
-   // intro.play();
+   intro.play();
    //stops any previous timers
     clearInterval(clickWorkTime);
   //sets clock hand animations to go
@@ -153,7 +152,7 @@ $(document).ready(function(){
     //when time runs out
     if (displaySecW === 0 && displayMinW === 0){
       //should do something cool here like play a sound or graphics...
-        // audio.play();
+         audio.play();
          $clockDisplay.html("Break Time");
          $bigWork.html('');
          clearInterval(clickWorkTime);
